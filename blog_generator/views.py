@@ -59,8 +59,8 @@ def download_Audio(link):
     return file_path
 
 def get_transcription(link):
-
-    client = genai.Client(api_key="AIzaSyBhJ6QwfWk3dWjo6gbjdMXoB89KybH2Rtk")
+    API_KEY = os.getenv("API_KEY")
+    client = genai.Client(api_key=API_KEY)
     audio_file=download_Audio(link)
     myfile = client.files.upload(file=audio_file)
 
@@ -74,7 +74,8 @@ def get_transcription(link):
 def generate_blog_from_transcription(transcription):
     """ Uses Google Gemini to generate a blog from the transcript. """
     try:
-        client = genai.Client(api_key="AIzaSyBhJ6QwfWk3dWjo6gbjdMXoB89KybH2Rtk")
+        API_KEY = os.getenv("API_KEY")
+        client = genai.Client(api_key=API_KEY)
         prompt = f"Based on the following transcript, write an engaging blog without any text formatting, have a heading:\n\n {transcription} \n\n"
         response = client.models.generate_content(model="gemini-2.0-flash", contents=prompt)
 

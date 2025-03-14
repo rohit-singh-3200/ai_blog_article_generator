@@ -8,15 +8,30 @@
 </head>
 <body class=" bg-gray-200 flex flex-col min-h-screen">
     
-        <!--Navbar-->
-<nav class="bg-black p-4 text-white flex justify-between">
-    <div>
-        <a href="/"> <h1 class=" font-bold italic text-3xl transition-transform transform hover:scale-105">Ai Blog Generator</h1></a>
-    </div>
-<div>
-    <a href="login" class="text-white hover:underline transition-transform transform hover:scale-105 flex flex-col">Login</a>
-</div>
-</nav>
+    <!--Navbar-->
+    <nav class="bg-black p-2 text-white flex justify-between items-center">
+        <div>
+           <a href="/"> <h1 class="font-bold italic text-3xl transition-transform transform hover:scale-105">Ai Blog Generator</h1></a>
+        </div>
+        <div class="flex items-center pr-40 space-x-6 justify-center">
+            <h2 class="text-xl flex flex-col">Home</h2>
+            <span>  </span> 
+            <a href="contact-us"><h2 class="transition-transform transform hover:scale-105 flex flex-col">Contact us</h2></a>
+        </div>
+    
+        <div class="flex items-center space-x-2">  
+            {% if request.user.is_authenticated %}
+            <h2>Welcome, {{user.username}}</h2>
+            <a href="blog-list" class="text-white hover:underline transition-transform transform hover:scale-105 flex flex-row">All blogs</a>
+            <span>|</span>
+            <a href="logout" class="text-white hover:underline transition-transform transform hover:scale-105 flex flex-col">Logout</a>
+            {% else %}
+            <a href="login" class="text-white hover:underline transition-transform transform hover:scale-105 flex flex-col">Login</a>
+            <a href="signup" class="text-white hover:underline transition-transform transform hover:scale-105 flex flex-col">Signup</a>
+            {% endif %}
+        </div>
+    
+    </nav>
 <!-- Main content -->
 
  <div class=" bg-gradient-to-l from-blue-500 to-white-500 flex items-center justify-center flex-grow " >
