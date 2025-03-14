@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Page</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-200 font-sans antialised">
+            <!--Navbar-->
+<nav class="bg-black p-4 text-white flex justify-between">
+    <div>
+        <a href="/"> <h1 class=" font-bold italic text-3xl transition-transform transform hover:scale-105">Ai Blog Generator</h1></a>
+    </div>
+<div>
+    <a href="logout" class="text-white hover hover:underline transition-transform transform hover:scale-105 flex flex-col">Logout</a>
+    <a href='/' class="text-white hover hover:underline transition-transform transform hover:scale-105 flex flex-col">Home</a>
+</div>
+</nav>
+
+<!-- main content container -->
+<div class="container mx-auto ">
+    <div class="max-w-auto mx-auto bg-white rounded min-h-screen">
+        <section>
+            <h2 class="text-center text-2xl mb-4 font-semibold">Blogpost Details</h2>
+            
+            <div class="border-2 border-gray-300 p-4 rounded-lg">
+                <h3 class="text-lg font-semibold">Youtube title: </h3>
+                <p class="text-gray-700">{{blog_detail.youtube_title|safe}}</p>
+                <hr class="border-gray-400 my-4">
+                <h4 class="text-lg font-semibold">Youtube link:</h4>
+                <p class="text-gray-700">{{blog_detail.youtube_link}}</p>
+                <a href={{blog_detail.youtube_link}} class="text-blue-600 hover:underline">www.youtube.com</a>
+                <h4 class="text-lg font-semibold mt-4">Generated content: </h4>
+                <p class="text-gray-700">{{blog_detail.generated_content|safe}}</p>                
+                
+            </div>
+        </section>
+
+
+</div>
+</div>
+
+
+
+
+<footer class="text-xl font-semibold mb-1">
+    Created by <a href="https://www.linkedin.com/in/rohitkpsingh">Rohit Singh</a>
+</footer>
+</body>
+</html>
