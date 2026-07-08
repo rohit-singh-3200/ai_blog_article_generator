@@ -12,7 +12,35 @@ The project demonstrates the integration of modern AI APIs with Django while imp
 
 ---
 
-## ✨ Features
+> [!IMPORTANT]
+> **Please update all dependencies before running this project.**
+>
+> AI SDKs and YouTube-related libraries receive frequent updates, and older versions may cause compatibility issues or runtime errors.
+>
+> Before starting the project, run:
+>
+> ```bash
+> python -m pip install --upgrade pip
+> python -m pip install -r requirements.txt
+> python -m pip install --upgrade google-genai yt-dlp
+> ```
+>
+> **Google Gemini models are updated regularly.** If you encounter errors such as:
+>
+> - Model not found
+> - Deprecated model
+> - Invalid API request
+>
+> check the latest supported models in the official Gemini documentation and update the model name in the source code accordingly.
+>
+> **Official Documentation**
+>
+> - https://ai.google.dev/gemini-api/docs
+> - https://ai.google.dev/gemini-api/docs/models
+
+---
+
+# ✨ Features
 
 - 🔐 User Authentication (Signup & Login)
 - 🤖 Generate AI-powered blog articles
@@ -27,33 +55,33 @@ The project demonstrates the integration of modern AI APIs with Django while imp
 
 # 📸 Demo
 
-## Home Page
+## 🏠 Home Page
 
-(Add Screenshot Here)
-
----
-
-## Login Page
-
-(Add Screenshot Here)
+<img width="1909" height="932" alt="Home Page" src="https://github.com/user-attachments/assets/0675c14f-75b0-4253-abe3-8f09a91bf80d" />
 
 ---
 
-## Generate Blog
+## 🔑 Login Page
 
-(Add Screenshot Here)
-
----
-
-## Generated Blog
-
-(Add Screenshot Here)
+<img width="1916" height="936" alt="Login Page" src="https://github.com/user-attachments/assets/6346c06b-d7a9-4d99-9639-6002db1e0aa6" />
 
 ---
 
-## All Blogs
+## ✍️ Generate Blog
 
-(Add Screenshot Here)
+<img width="1907" height="931" alt="Generate Blog" src="https://github.com/user-attachments/assets/104cb241-a8c9-43ad-817b-74169e6b30a1" />
+
+---
+
+## 📖 Generated Blog
+
+<img width="1817" height="932" alt="Generated Blog" src="https://github.com/user-attachments/assets/b01d8e0f-3f5a-4c92-aa4b-010279d2bae5" />
+
+---
+
+## 📚 All Blogs
+
+<img width="1911" height="936" alt="All Blogs" src="https://github.com/user-attachments/assets/e1f66ffb-25c9-48b5-8818-a731dec5946d" />
 
 ---
 
@@ -67,29 +95,35 @@ The project demonstrates the integration of modern AI APIs with Django while imp
 - **CSS**
 - **JavaScript**
 - **Bootstrap**
+- **yt-dlp**
+- **Markdown**
 
 ---
 
 # 📂 Project Structure
 
-```
+```text
 AI_Blog_Article_Generator/
 
 │
 ├── ai_blog_app/
 │   ├── settings.py
 │   ├── urls.py
-│   └── ...
+│   ├── wsgi.py
+│   └── asgi.py
 │
 ├── blog_generator/
+│   ├── migrations/
+│   ├── templates/
 │   ├── models.py
 │   ├── views.py
 │   ├── urls.py
-│   ├── migrations/
-│   └── templates/
+│   ├── admin.py
+│   └── apps.py
 │
 ├── manage.py
 ├── requirements.txt
+├── .gitignore
 ├── db.sqlite3
 └── README.md
 ```
@@ -104,15 +138,19 @@ AI_Blog_Article_Generator/
 git clone https://github.com/rohit-singh-3200/ai_blog_article_generator.git
 ```
 
+---
+
 ## 2. Navigate to the project
 
 ```bash
 cd ai_blog_article_generator
 ```
 
-## 3. Create a virtual environment
+---
 
-Windows
+## 3. Create a Virtual Environment
+
+### Windows
 
 ```bash
 python -m venv venv
@@ -124,7 +162,13 @@ Activate it
 venv\Scripts\activate
 ```
 
-Linux/macOS
+### Linux / macOS
+
+```bash
+python3 -m venv venv
+```
+
+Activate it
 
 ```bash
 source venv/bin/activate
@@ -132,23 +176,31 @@ source venv/bin/activate
 
 ---
 
-## 4. Install dependencies
+## 4. Install & Update Dependencies
 
 ```bash
-pip install -r requirements.txt
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python -m pip install --upgrade google-genai yt-dlp
 ```
 
 ---
 
-## 5. Create a `.env` file
+## 5. Create a `.env` File
+
+Create a `.env` file in the project root and add your Gemini API key:
 
 ```env
-GEMINI_API_KEY=your_api_key_here
+API_KEY=your_google_gemini_api_key
 ```
+
+You can generate an API key from:
+
+https://aistudio.google.com/apikey
 
 ---
 
-## 6. Run migrations
+## 6. Run Database Migrations
 
 ```bash
 python manage.py migrate
@@ -156,13 +208,13 @@ python manage.py migrate
 
 ---
 
-## 7. Start the development server
+## 7. Start the Development Server
 
 ```bash
 python manage.py runserver
 ```
 
-Open
+Open your browser and visit:
 
 ```
 http://127.0.0.1:8000/
@@ -172,7 +224,7 @@ http://127.0.0.1:8000/
 
 # 🚀 How It Works
 
-```
+```text
 User
 
 ↓
@@ -181,27 +233,27 @@ Login / Signup
 
 ↓
 
-Enter Blog Topic
+Paste YouTube Video URL
 
 ↓
 
-Django Backend
+yt-dlp extracts audio
 
 ↓
 
-Gemini API
+Gemini API transcribes audio
 
 ↓
 
-AI Generates Blog
+Gemini generates a blog article
 
 ↓
 
-Store in Database
+Blog is saved to the database
 
 ↓
 
-Display to User
+User can view all previously generated blogs
 ```
 
 ---
@@ -210,14 +262,15 @@ Display to User
 
 - 🖼 AI Image Generation
 - 📄 Export blogs as PDF
-- 📑 Export as Word Document
+- 📑 Export blogs as Word documents
 - 🌐 Multi-language support
-- 🧠 Blog tone selection
+- 🎭 Blog writing style selection
 - 🎯 SEO optimization
 - 🔖 Save favorite blogs
-- 📊 Blog analytics dashboard
+- 📊 User analytics dashboard
 - ☁️ AWS Deployment
 - 🐳 Docker Support
+- 🔍 AI-generated blog summaries
 
 ---
 
@@ -225,9 +278,9 @@ Display to User
 
 **Rohit Kumar Singh**
 
-- GitHub: https://github.com/rohit-singh-3200
-- LinkedIn: https://www.linkedin.com/in/rohitkpsingh
+- **GitHub:** https://github.com/rohit-singh-3200
+- **LinkedIn:** https://www.linkedin.com/in/rohitkpsingh
 
 ---
 
-⭐ If you found this project useful, consider giving it a star!
+⭐ If you found this project useful, consider giving it a **Star ⭐** to support the project!
